@@ -24,17 +24,11 @@ jobs:
         run: rm -rf public
       
       - name: Build
-        run: hugo --minify
+        run: hugo
       
-      - name: Create cname file
-        run: echo 'blog.akshaysuthar.me' > public/CNAME
-
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-#         with:
-#           github_token: ${{ secrets.GITHUB_TOKEN }}
-#           publish_dir: ./public
-        env:
-          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./public
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          cname: blog.akshaysuthar.me
